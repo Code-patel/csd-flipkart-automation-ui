@@ -12,6 +12,8 @@ public class BaseUI {
 
     WebDriver driver;
     DashboardPage dashboardPage;
+    ProductDetailsPage productDetailsPage;
+    CheckoutPage checkoutPage;
 
     String url = "http://flipkart.com";
 
@@ -22,6 +24,8 @@ public class BaseUI {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.get(url);
         dashboardPage = new DashboardPage(driver);
+        productDetailsPage = new ProductDetailsPage(driver);
+        checkoutPage = new CheckoutPage(driver);
     }
 
     @AfterSuite

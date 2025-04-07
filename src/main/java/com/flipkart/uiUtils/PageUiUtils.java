@@ -2,6 +2,7 @@ package com.flipkart.uiUtils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.concurrent.TimeUnit;
@@ -39,5 +40,23 @@ public class PageUiUtils {
         }catch (Exception e){
             System.out.println("Waiting...");
         }
+    }
+
+    public boolean isElementVisible(By locator) {
+        boolean isVisible;
+        try{
+            driver.findElement(locator);
+            System.out.println("Element is visible");
+            isVisible = true;
+        }catch (Exception e){
+            isVisible = false;
+            System.out.println("Element is not visible");
+        }
+        return isVisible;
+    }
+
+    public void hoverToMenu(By menuLogin) {
+        Actions action = new Actions(driver);
+        action.moveToElement(driver.findElement(menuLogin)).perform();
     }
 }
