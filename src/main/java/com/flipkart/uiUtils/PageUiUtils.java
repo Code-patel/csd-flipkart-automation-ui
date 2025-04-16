@@ -1,7 +1,9 @@
 package com.flipkart.uiUtils;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -58,5 +60,29 @@ public class PageUiUtils {
     public void hoverToMenu(By menuLogin) {
         Actions action = new Actions(driver);
         action.moveToElement(driver.findElement(menuLogin)).perform();
+    }
+
+    public void waitTillElementIsNotVisible(By lblErrorMessage, int wait_time) {
+        int count = 1;
+        sleep(1000);
+        while (count<=wait_time){
+            if(!isElementVisible(lblErrorMessage)){
+                sleep(1000);
+                count++;
+            }else {
+                break;
+            }
+        }
+
+    }
+
+    public String getTextFromElement(By lblErrorMessage) {
+        return driver.findElement(lblErrorMessage).getText();
+    }
+
+    public void clickOnElementUsingJSExecutor(By btnLogin) {
+        WebElement element = driver.findElement(btnLogin);
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("arguments[0].click();", element);
     }
 }
