@@ -1,5 +1,6 @@
 package com.flipkart.pages;
 
+import com.flipkart.uiUtils.ConfigReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import com.flipkart.uiUtils.PageUiUtils;
@@ -159,7 +160,8 @@ public class DashboardPage {
     }
 
     public void navigateToFlipkart() {
-        pageUiUtils.getDriver().get("http://flipkart.com");
+        String baseUrl = ConfigReader.getConfigValue("baseUrl");
+        pageUiUtils.getDriver().get(baseUrl);
     }
 
     public void verifyDashboardPageAfterLogin() {
