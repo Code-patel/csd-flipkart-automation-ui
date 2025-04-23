@@ -2,6 +2,7 @@ package com.flipkart.pages;
 
 import com.flipkart.uiUtils.ConfigReader;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import com.flipkart.uiUtils.PageUiUtils;
 
@@ -215,5 +216,12 @@ public class DashboardPage {
     public boolean verifyTwoWheelerNavigationPage() {
         String currentUrl = pageUiUtils.getDriver().getCurrentUrl();
         return currentUrl.contains("two-wheelers-store");
+    }
+
+    public void searchItem(String itemName) {
+        By txtSearchBox = By.xpath("//form[@action=\"/search\"]//input[@name='q']");
+        pageUiUtils.sendTextToElement(txtSearchBox, itemName);
+        pageUiUtils.getDriver().findElement(txtSearchBox).sendKeys(Keys.ENTER);
+        pageUiUtils.sleep(3000);
     }
 }

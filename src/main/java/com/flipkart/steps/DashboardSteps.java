@@ -191,4 +191,9 @@ public class DashboardSteps {
         boolean isVisible = dashboardPage.verifyTwoWheelerNavigationPage();
         Assert.assertTrue("Two Wheeler navigation page is not proper", isVisible);
     }
+
+    @And("Search item {string}")
+    public void searchItem(String itemName) {
+        dashboardPage.searchItem(itemName);
+    }
 }

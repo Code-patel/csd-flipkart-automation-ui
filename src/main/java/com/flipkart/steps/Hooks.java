@@ -25,7 +25,7 @@ public class Hooks {
     @After
     public void tearDown() throws Exception {
         takeScreenShotAndAttachToAllureReport();
-        driver.close();
+        driver.quit();
     }
 
     public void takeScreenShotAndAttachToAllureReport() {

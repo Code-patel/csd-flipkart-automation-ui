@@ -5,8 +5,11 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
+import java.util.Set;
 import java.util.concurrent.TimeUnit;
 
 public class PageUiUtils {
@@ -84,5 +87,39 @@ public class PageUiUtils {
         WebElement element = driver.findElement(btnLogin);
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("arguments[0].click();", element);
+    }
+
+    public void selectByVisibleText(By locator, String visibleText) {
+        WebElement element = driver.findElement(locator);
+        Select selectObj = new Select(element);
+        selectObj.selectByVisibleText(visibleText);
+    }
+
+
+    public void selectByValue(By locator, String visibleText) {
+        WebElement element = driver.findElement(locator);
+        Select selectObj = new Select(element);
+        selectObj.selectByValue(visibleText);
+    }
+
+    public WebElement findElement(By locator) {
+        return driver.findElement(locator);
+    }
+
+    public List<WebElement> findElements(By locators) {
+        return driver.findElements(locators);
+    }
+
+    public void moveToNextBrowserTab(){
+        Set<String> handles = driver.getWindowHandles();
+        int tabCount = 0;
+        for(String tab : handles){
+            if(tabCount==1){
+                driver.switchTo().window(tab);
+                break;
+            }
+            tabCount++;
+        }
+        sleep(1000);
     }
 }
